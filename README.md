@@ -159,7 +159,7 @@ write unknown namespaces into the running CraftEngine recipes.
 1. Install Java 21 and Paper 26.3 or Folia 26.3.
 2. Install CraftEngine 26.9.1 or newer.
 3. Install FarmersDelight-Plugin 1.0.3.
-4. Place `SyalsDelight-1.0.5.jar` in `plugins/`.
+4. Place `SyalsDelight-1.0.6.jar` in `plugins/`.
 5. Fully stop and restart the server.
 
 The first start installs `plugins/CraftEngine/resources/syals_delight` and

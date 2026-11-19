@@ -249,8 +249,9 @@ class ResourceIntegrityTest {
             int header = text.contains("| Item | How to obtain |")
                     ? text.indexOf("| Item | How to obtain |")
                     : text.indexOf("| 物品 | 获取方式 |");
-            String table = text.substring(header, text.indexOf("\n\n", header));
-            List<String> itemRows = table.lines()
+            List<String> itemRows = text.substring(header)
+                    .lines()
+                    .takeWhile(line -> !line.isBlank())
                     .filter(line -> line.startsWith("| <img"))
                     .toList();
             assertEquals(15, itemRows.size());
@@ -390,7 +391,7 @@ class ResourceIntegrityTest {
         int count = 0;
         for (Path file : recipeFiles()) {
             Map<String, Object> root = loadYaml(file);
-            for (String key : List.of("recipes", "cooking_recipes", "cutting_recipes")) {
+            for (String key : List.of("recipes", "cooking_recipes", "cutting_recipes", "farmersdelight_recipes")) {
                 if (root.get(key) instanceof Map<?, ?> section) {
                     count += section.size();
                 }

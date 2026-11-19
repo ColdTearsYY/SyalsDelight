@@ -1,68 +1,91 @@
-cooking_recipes:
+farmersdelight_recipes:
   syals_delight:fried_potato_slice:
-    ingredients:
-      - syals_delight:potato_slice
-      - syals_delight:potato_slice
-      - '#syals_delight:food_oil'
-      - '#syals_delight:food_oil'
-    result: syals_delight:fried_potato_slice
-    result-count: 2
-    experience: 0.0
-    cook-time: 200
+    station: cooking_pot
+    input:
+      items:
+        - syals_delight:potato_slice
+        - syals_delight:potato_slice
+        - '#syals_delight:food_oil'
+        - '#syals_delight:food_oil'
+    output:
+      item: syals_delight:fried_potato_slice
+      count: 2
+    process:
+      ticks: 200
+      experience: 0.0
     category: misc
   syals_delight:greasy_potato_slice:
-    ingredients:
-      - syals_delight:potato_slice
-      - syals_delight:potato_slice
-      - '#syals_delight:food_oil'
-      - '#syals_delight:food_oil'
-      - '#syals_delight:food_oil'
-    result: syals_delight:greasy_potato_slice
-    result-count: 2
-    experience: 0.0
-    cook-time: 200
+    station: cooking_pot
+    input:
+      items:
+        - syals_delight:potato_slice
+        - syals_delight:potato_slice
+        - '#syals_delight:food_oil'
+        - '#syals_delight:food_oil'
+        - '#syals_delight:food_oil'
+    output:
+      item: syals_delight:greasy_potato_slice
+      count: 2
+    process:
+      ticks: 200
+      experience: 0.0
     category: misc
   syals_delight:low_fat_potato_slice:
-    ingredients:
-      - syals_delight:potato_slice
-      - syals_delight:potato_slice
-      - '#syals_delight:food_oil'
-    result: syals_delight:low_fat_potato_slice
-    result-count: 2
-    experience: 0.0
-    cook-time: 200
+    station: cooking_pot
+    input:
+      items:
+        - syals_delight:potato_slice
+        - syals_delight:potato_slice
+        - '#syals_delight:food_oil'
+    output:
+      item: syals_delight:low_fat_potato_slice
+      count: 2
+    process:
+      ticks: 200
+      experience: 0.0
     category: misc
   syals_delight:hot_potato_slice:
-    ingredients:
-      - syals_delight:fried_potato_slice
-      - syals_delight:fried_potato_slice
-      - '#syals_delight:food_oil'
-      - '#syals_delight:food_oil'
-    result: syals_delight:hot_potato_slice
-    result-count: 2
-    experience: 0.0
-    cook-time: 200
+    station: cooking_pot
+    input:
+      items:
+        - syals_delight:fried_potato_slice
+        - syals_delight:fried_potato_slice
+        - '#syals_delight:food_oil'
+        - '#syals_delight:food_oil'
+    output:
+      item: syals_delight:hot_potato_slice
+      count: 2
+    process:
+      ticks: 200
+      experience: 0.0
     category: misc
   syals_delight:batch_fried_potato_slice:
-    ingredients:
-      - syals_delight:potato_slice
-      - syals_delight:potato_slice
-      - syals_delight:potato_slice
-      - syals_delight:potato_slice
-      - '#syals_delight:food_oil'
-      - '#syals_delight:food_oil'
-    result: syals_delight:batch_fried_potato_slice
-    result-count: 4
-    experience: 0.0
-    cook-time: 200
+    station: cooking_pot
+    input:
+      items:
+        - syals_delight:potato_slice
+        - syals_delight:potato_slice
+        - syals_delight:potato_slice
+        - syals_delight:potato_slice
+        - '#syals_delight:food_oil'
+        - '#syals_delight:food_oil'
+    output:
+      item: syals_delight:batch_fried_potato_slice
+      count: 4
+    process:
+      ticks: 200
+      experience: 0.0
     category: misc
   syals_delight:oil_bottle:
-    ingredients:
-      - syals_delight:animal_fat
-      - syals_delight:animal_fat
-    result: syals_delight:oil_bottle
-    result-count: 1
-    experience: 0.0
-    cook-time: 200
+    station: cooking_pot
+    input:
+      items:
+        - syals_delight:animal_fat
+        - syals_delight:animal_fat
+    output:
+      item: syals_delight:oil_bottle
+      count: 1
+    process:
+      ticks: 200
+      experience: 0.0
     category: misc
-

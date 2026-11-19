@@ -59,8 +59,8 @@ class RecipeIntegrityTest {
     void recipesHaveExpectedStationCountsAndNoOptionalNamespaceReferences() throws Exception {
         List<Recipe> recipes = loadRecipes();
         assertEquals(29, recipes.size());
-        assertEquals(9, recipes.stream().filter(recipe -> recipe.station().equals("cooking_recipes")).count());
-        assertEquals(2, recipes.stream().filter(recipe -> recipe.station().equals("cutting_recipes")).count());
+        assertEquals(9, recipes.stream().filter(recipe -> recipe.station().equals("cooking_pot")).count());
+        assertEquals(2, recipes.stream().filter(recipe -> recipe.station().equals("cutting_board")).count());
         assertEquals(18, recipes.stream().filter(recipe -> recipe.station().equals("recipes")).count());
 
         Set<String> allowedNamespaces = Set.of(
@@ -110,8 +110,41 @@ class RecipeIntegrityTest {
             collect(root, "recipes", recipes);
             collect(root, "cooking_recipes", recipes);
             collect(root, "cutting_recipes", recipes);
+            collectFarmersDelight(root, recipes);
         }
         return List.copyOf(recipes);
+    }
+
+    private static void collectFarmersDelight(Map<String, Object> root, List<Recipe> recipes) {
+        Map<String, Object> nativeRecipes = ResourceIntegrityTest.map(root.get("farmersdelight_recipes"));
+        for (Map.Entry<String, Object> entry : nativeRecipes.entrySet()) {
+            Map<String, Object> recipe = ResourceIntegrityTest.map(entry.getValue());
+            String station = recipe.get("station").toString();
+            Map<String, Object> input = ResourceIntegrityTest.map(recipe.get("input"));
+            List<String> inputs = new java.util.ArrayList<>();
+            if (station.equals("cooking_pot")) {
+                Object items = input.get("items");
+                if (items instanceof List<?> list) {
+                    list.stream().map(Object::toString).forEach(inputs::add);
+                }
+            } else {
+                inputs.add(input.get("item").toString());
+                Object tools = input.get("tools");
+                if (tools instanceof List<?> list) {
+                    list.stream().map(Object::toString).forEach(inputs::add);
+                }
+            }
+
+            Object output = recipe.get("output");
+            String result;
+            if (output instanceof Map<?, ?> map) {
+                result = ResourceIntegrityTest.map(map).get("item").toString();
+            } else {
+                List<?> results = (List<?>) output;
+                result = ResourceIntegrityTest.map(results.getFirst()).get("item").toString();
+            }
+            recipes.add(new Recipe(entry.getKey(), station, result, List.copyOf(inputs)));
+        }
     }
 
     private static void collect(
@@ -167,4 +200,3 @@ class RecipeIntegrityTest {
     ) {
     }
 }
-
